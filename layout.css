@@ -1,0 +1,188 @@
+/* ── cv.css ── pandoc/weasyprint stylesheet for CV_Paulo.md ── */
+/* Style goal: match the reportlab version — clean, no tables,  */
+/* italic job-meta lines, bold label + prose body for skills.   */
+/*                                                               */
+/* Font sizing: all values in em relative to html { font-size } */
+/* Override base via Makefile: FONT_SIZE=9pt make               */
+
+:root {
+  --dark-blue:   #1A2B4A;
+  --mid-blue:    #2C5282;
+  --accent-blue: #3182CE;
+  --light-grey:  #718096;
+  --text:        #1A202C;
+}
+
+/* ── Base: all em values scale from here ── */
+html {
+  font-size: 8.8pt;   /* Makefile injects override on html — scales everything */
+}
+
+@page {
+  size: A4;           /* Makefile injects override via ORIENTATION */
+  margin: 15mm 18mm 15mm 18mm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: Helvetica, sans-serif;
+    font-size: 0.795em;   /* ~7pt at base */
+    color: #718096;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1em;       /* inherits html base */
+  line-height: 1.45;
+  color: #1A202C;
+  background: #ffffff;
+  margin: 0; padding: 0;
+}
+
+h1 {
+  font-size: 2.27em;    /* ~20pt at base */
+  font-weight: bold;
+  color: #1A2B4A;
+  margin: 0 0 2mm 0;
+  padding: 0; border: none;
+  line-height: 1.1;
+}
+
+.contact {
+  font-size: 0.91em;    /* ~8pt at base */
+  color: #718096;
+  margin-bottom: 3mm;
+  line-height: 1.6;
+}
+.contact a { color: #718096; text-decoration: none; }
+
+hr {
+  border: none;
+  border-top: 0.6pt solid #3182CE;
+  margin: 2.5mm 0 2mm 0;
+}
+
+h2 {
+  font-size: 1.08em;    /* ~9.5pt at base */
+  font-weight: bold;
+  color: #2C5282;
+  text-transform: uppercase;
+  letter-spacing: 0.8pt;
+  margin: 4mm 0 1.5mm 0;
+  padding: 0; border: none;
+  page-break-after: avoid;
+}
+
+h3 {
+  font-size: 1.02em;    /* ~9pt at base */
+  font-weight: bold;
+  color: #1A2B4A;
+  margin: 3mm 0 0.5mm 0;
+  padding: 0; border: none;
+  page-break-after: avoid;
+}
+
+.job-meta {
+  font-size: 0.91em;    /* ~8pt at base */
+  font-style: italic;
+  color: #718096;
+  margin: 0 0 1.5mm 0;
+}
+
+p {
+  margin: 0 0 1.5mm 0;
+  text-align: justify;
+}
+
+/* Skills label: a paragraph that is purely a <strong> node */
+p > strong:only-child {
+  display: inline;
+  font-size: 1em;
+  font-weight: bold;
+  color: #1A2B4A;
+  margin-bottom: 0.3mm;
+}
+
+ul {
+  margin: 0 0 1.5mm 0;
+  padding-left: 5mm;
+}
+li {
+  margin-bottom: 1mm;
+  text-align: justify;
+}
+li strong { color: #1A2B4A; }
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.91em;    /* ~8pt at base */
+  background: #EBF4FF;
+  color: #2C5282;
+  padding: 0 1mm;
+  border-radius: 1pt;
+}
+
+a { color: #3182CE; text-decoration: none; }
+
+h2, h3 { page-break-after: avoid; }
+ul      { page-break-inside: avoid; }
+
+/* ── Table styles (for reference documents) ── */
+table {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  font-size: 0.82em;
+  margin: 2mm 0 3mm 0;
+  page-break-inside: auto;
+}
+
+thead tr {
+  background-color: #1A2B4A;
+  color: #ffffff;
+}
+
+thead th {
+  padding: 2mm 2.5mm;
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.95em;
+  letter-spacing: 0.3pt;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #EBF4FF;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tbody td {
+  padding: 1.5mm 2.5mm;
+  vertical-align: top;
+  border-bottom: 0.3pt solid #CBD5E0;
+  line-height: 1.4;
+}
+
+tbody td:first-child {
+  font-weight: bold;
+  color: #2C5282;
+}
+
+tbody td code {
+  font-size: 0.88em;
+  white-space: nowrap;
+}
+
+/* ── pre/code indent fix (WeasyPrint first-line leak) ── */
+pre {
+  text-indent: 0 !important;
+  padding-left: 2mm;
+}
+pre * {
+  text-indent: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
