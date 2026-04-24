@@ -23,17 +23,27 @@ pkg install pandoc         # FreeBSD
 ## Installation
 
 ```sh
-cp Makefile layout.css layout-fixed.css ~/bin/
+make install
 ```
 
-Add to `~/.zshrc`:
+This copies `Makefile`, `layout.css`, and `layout-fixed.css` to `~/bin/`.
+
+Then add the alias to your shell rc file:
+
+**zsh / bash** — add to `~/.zshrc` or `~/.bashrc`:
 ```sh
 alias mkpdf='make -f ~/bin/Makefile'
 ```
 
-Add to `~/.cshrc`:
+**tcsh / csh** — add to `~/.tcshrc` or `~/.cshrc`:
 ```csh
 alias mkpdf 'make -f ~/bin/Makefile'
+```
+
+Reload without restarting the shell:
+```sh
+source ~/.zshrc    # zsh
+source ~/.cshrc    # csh
 ```
 
 ## Usage

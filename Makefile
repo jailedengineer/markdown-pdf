@@ -41,7 +41,7 @@ FLAGS  := --standalone \
           --highlight-style=tango
 
 # STYLE_HDR is phony so it is always regenerated — changes take effect immediately
-.PHONY: all pdf html clean $(STYLE_HDR)
+.PHONY: all pdf html clean install $(STYLE_HDR)
 
 $(STYLE_HDR):
 	printf '<style>html { font-size: %s !important; } @page { size: %s; }</style>\n' \
@@ -62,6 +62,16 @@ html: $(SRC) $(CSS) $(STYLE_HDR)
 	  -o $(HTML) \
 	  $(SRC)
 	@echo "✓  $(HTML) [src=$(SRC) css=$(CSS) font-size=$(FONT_SIZE) orientation=$(ORIENTATION)]"
+
+install:
+	@mkdir -p ~/bin
+	cp Makefile layout.css layout-fixed.css ~/bin/
+	@echo "✓  Files installed to ~/bin/"
+	@echo ""
+	@echo "Add alias to your shell rc file:"
+	@echo ""
+	@echo "  zsh/bash  →  alias mkpdf='make -f ~/bin/Makefile'"
+	@echo "  tcsh/csh  →  alias mkpdf 'make -f ~/bin/Makefile'"
 
 clean:
 	rm -f $(OUT) $(HTML) $(STYLE_HDR)
