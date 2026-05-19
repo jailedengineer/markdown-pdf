@@ -57,6 +57,9 @@ mkpdf SRC=mydoc.md ORIENTATION=landscape FONT_SIZE=7pt  # wide tables
 mkpdf SRC=mydoc.md CSS=~/bin/layout-fixed.css           # fixed column widths
 ```
 
+> **macOS quick start:** `mkpdf SRC=mydoc.md PREVIEW=yes` builds the PDF and
+> opens it in Preview automatically.
+
 Output files are named from the source: `SRC=report.md` → `report.pdf` + `report.html`
 
 ## Variables
@@ -67,7 +70,7 @@ Output files are named from the source: `SRC=report.md` → `report.pdf` + `repo
 | `CSS` | `~/bin/layout.css` | Stylesheet path |
 | `FONT_SIZE` | `8.8pt` | Base font size — scales all elements proportionally |
 | `ORIENTATION` | `portrait` | `portrait` or `landscape` |
-| `PREVIEW` | `no` | Set to `yes` to open PDF after build |
+| `PREVIEW` | `no` | Set to `yes` to open PDF after build (macOS) |
 
 ## Choosing a stylesheet
 
