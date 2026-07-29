@@ -86,3 +86,26 @@ pre.config, pre.config code {
 ```
 
 These are useful additions to your `layout.css` for technical documents like `roteiro.md`.
+
+## ASCII diagrams (box-drawing art)
+
+Fenced blocks tagged with the `diagram` class render with zero leading, so
+box-drawing glyphs (`─ │ ┌ ┐ └ ┘ ┬ ▼ ►`) connect vertically instead of
+appearing dashed:
+
+```{.diagram}
+    ┌──────┐    ┌───────┐
+    │ left │───►│ right │
+    └──┬───┘    └───────┘
+       ▼
+```
+
+The tag is inert on GitHub (plain code block) and in plaintext, so one
+source works for repo, PDF, and mailing-list use. Regular fenced blocks
+keep `line-height: 1.4` for readable config listings. All code blocks
+avoid page splits (`page-break-inside: avoid`); a block taller than one
+page will still split — break it in the source instead.
+
+Font note: box-drawing alignment depends on a mono font with full
+coverage — the stack is Menlo (macOS) → DejaVu Sans Mono (Linux) →
+Courier New. Verify with `fc-match Menlo` if columns shear.
