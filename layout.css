@@ -186,3 +186,77 @@ pre * {
   margin-left: 0 !important;
   padding-left: 0 !important;
 }
+
+/* ── Terminal output blocks: black on white, monospace, no syntax colors ── */
+pre.terminal {
+  background: #ffffff;
+  border: 0.5pt solid #CBD5E0;
+  border-radius: 2pt;
+  padding: 3mm 4mm;
+  margin: 3mm 0;
+  line-height: 1.35;
+  white-space: pre;
+  text-indent: 0 !important;
+}
+pre.terminal code {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.82em;
+  color: #1A202C;
+}
+pre.terminal * {
+  text-indent: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  color: #1A202C !important;
+  background: none !important;
+}
+
+
+/* ── GitHub-style fenced code blocks (ASCII diagrams, config listings) ── */
+/* Menlo first: full box-drawing glyph coverage on macOS; DejaVu Sans     */
+/* Mono covers Linux CI builds. Courier New stays as last resort only.    */
+pre {
+  background: #f6f8fa;
+  border: 0.5pt solid #d0d7de;
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin: 2.5mm 0 3mm 0;
+  font-family: "Menlo", "DejaVu Sans Mono", "SF Mono", "Courier New", monospace;
+  font-size: 0.82em;
+  line-height: 1.4;
+  white-space: pre;
+  page-break-inside: avoid;   /* keep blocks whole; a >1-page block still splits */
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #1F2328;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+/* pandoc --syntax-highlighting wraps fenced blocks in div.sourceCode */
+div.sourceCode {
+  page-break-inside: avoid;
+  margin: 0;
+}
+
+/* ── Images (e.g. companion SVG diagrams) ── */
+img {
+  max-width: 100%;
+  page-break-inside: avoid;
+}
+
+/* ── ASCII-art diagram blocks: box-drawing glyphs only connect when   */
+/* consecutive em boxes touch, so leading must be zero. Tag the fence  */
+/* in Markdown as ```{.diagram} — pandoc emits the class; GitHub       */
+/* ignores the info string and renders it as a plain code block.       */
+pre.diagram, div.sourceCode pre.diagram {
+  line-height: 1.0;
+  font-size: 0.86em;
+}

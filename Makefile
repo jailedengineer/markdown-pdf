@@ -38,7 +38,7 @@ FLAGS  := --standalone \
           --metadata title="" \
           --css $(CSS) \
           --include-in-header $(STYLE_HDR) \
-          --highlight-style=tango
+          --syntax-highlighting=tango
 
 # STYLE_HDR is phony so it is always regenerated — changes take effect immediately
 .PHONY: all pdf html clean install $(STYLE_HDR)
